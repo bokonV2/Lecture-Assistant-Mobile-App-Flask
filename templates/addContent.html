@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Assistant</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
+</head>
+  <body>
+    <section class="back">
+      <div class="header">
+        <a href="#">
+          <svg width="24px" height="24px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
+          </svg>
+          <span>
+            Назад
+          </span>        
+        </a>
+      </div>
+    </section>
+    <section class="loginPage">
+      
+        <div class="top">
+          <div class="header">
+            <h1>Добавить дисциплину</h1>
+          </div>
+          <form action="/login" method="post">
+            <input type="text" name="name" placeholder="Название" required autocomplete="name_new">
+            <input class="btn" type="submit" value="Добавить">
+          </form>
+        </div>
+
+        <div class="top">
+          <div class="header">
+            <h1>Добавить лекцию</h1>
+          </div>
+          <form action="/login" method="post">
+            <input type="text" name="name" placeholder="Название" required autocomplete="name_new">
+            <textarea placeholder="Текст лекции" name="content" cols="30" rows="10"></textarea>
+            <input type="file" name="file">
+            <input class="btn" type="submit" value="Добавить">
+          </form>
+        </div>
+        
+    </section>
+  </body>
+</html>
