@@ -14,10 +14,10 @@
             <h1>Зарегистрировать учетную запись</h1>
           </div>
           <img src="/static/img/20944201.svg" alt="logo">
-          <form action="/login" method="post">
+          <form action="/register/0" method="post">
             <input type="text" name="fio" placeholder="ФИО" required autocomplete="fio_new">
             <input type="text" name="login" placeholder="Адрес электронной почты" required autocomplete="login_new">
-            <input type="password" password="password" placeholder="Пароль" required autocomplete="password_new">
+            <input type="password" name="password" password="password" placeholder="Пароль" required autocomplete="password_new">
             <input type="password" password="password" placeholder="Повторите пароль" required autocomplete="password_new">
             <input class="btn" type="submit" value="Дальше">
           </form>
@@ -26,7 +26,7 @@
           </div>
         </div>
         <div class="bottom">
-          <a href="/register">Создать учетную запись</a>
+          <a href="/login">Войти в учетную запись</a>
         </div>
       </section>
   </body>

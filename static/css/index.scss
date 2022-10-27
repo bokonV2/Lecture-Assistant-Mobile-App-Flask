@@ -46,6 +46,9 @@ section.loginPage{
   flex-direction: column;
   height: 100%;
   justify-content: space-between;
+  &.addMaterial{
+    justify-content: center;
+  }
 
   .top{
     display: flex;
@@ -54,6 +57,9 @@ section.loginPage{
     align-items: center;
     gap: 12px;
     padding-top: 8px;
+    &.addMaterial{
+      padding-bottom: 90px;
+    }
   
     .header{
       text-align: center;

@@ -10,7 +10,7 @@
   <body>
     <section class="back">
       <div class="header">
-        <a href="#">
+        <a href="{{ back }}">
           <svg width="24px" height="24px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
           </svg>
@@ -20,29 +20,30 @@
         </a>
       </div>
     </section>
-    <section class="loginPage">
-      
-        <div class="top">
+    <section class="loginPage addMaterial">
+        {% if type == 0 %}
+        <div class="top addMaterial">
           <div class="header">
             <h1>Добавить дисциплину</h1>
           </div>
-          <form action="/login" method="post">
+          <form action="/disciplines" method="post">
             <input type="text" name="name" placeholder="Название" required autocomplete="name_new">
             <input class="btn" type="submit" value="Добавить">
           </form>
         </div>
-
-        <div class="top">
+        {% else %}
+        <div class="top addMaterial">
           <div class="header">
             <h1>Добавить лекцию</h1>
           </div>
-          <form action="/login" method="post">
+          <form action="/{{disId}}/lecture" method="post" enctype="multipart/form-data">
             <input type="text" name="name" placeholder="Название" required autocomplete="name_new">
             <textarea placeholder="Текст лекции" name="content" cols="30" rows="10"></textarea>
             <input type="file" name="file">
             <input class="btn" type="submit" value="Добавить">
           </form>
         </div>
+        {% endif %}
         
     </section>
   </body>

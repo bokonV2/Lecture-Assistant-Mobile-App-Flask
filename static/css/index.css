@@ -52,6 +52,9 @@ section.loginPage {
   height: 100%;
   justify-content: space-between;
 }
+section.loginPage.addMaterial {
+  justify-content: center;
+}
 section.loginPage .top {
   display: flex;
   flex-direction: column;
@@ -59,6 +62,9 @@ section.loginPage .top {
   align-items: center;
   gap: 12px;
   padding-top: 8px;
+}
+section.loginPage .top.addMaterial {
+  padding-bottom: 90px;
 }
 section.loginPage .top .header {
   text-align: center;

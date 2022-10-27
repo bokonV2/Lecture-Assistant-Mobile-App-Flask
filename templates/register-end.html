@@ -14,20 +14,20 @@
             <h1>Зарегистрировать учетную запись</h1>
           </div>
           <img src="/static/img/20944201.svg" alt="logo">
-          <form action="/login" method="post">
-            <select>
+          <form action="/register/1" method="post">
+            <select name="person">
               <option value="0">Ученик</option>
               <option value="1">Преподаватель</option>
             </select>
-            <select>
-              <option value="0">Бух. учёт</option>
-              <option value="1">ПОИТ</option>
-              <option value="3">ПГС</option>
+            <select name="spec">
+              <option value="Бух. учёт">Бух. учёт</option>
+              <option value="ПОИТ">ПОИТ</option>
+              <option value="ПГС">ПГС</option>
             </select>
-            <select>
-              <option value="0">188-б</option>
-              <option value="1">23-п</option>
-              <option value="3">120-с</option>
+            <select name="group">
+              <option value="188-б">188-б</option>
+              <option value="23-п">23-п</option>
+              <option value="120-с">120-с</option>
             </select>
             <input class="btn" type="submit" value="Зарегистрировать">
           </form>
@@ -36,7 +36,7 @@
           </div>
         </div>
         <div class="bottom">
-          <a href="/register">Создать учетную запись</a>
+          <a href="/login">Войти в учетную запись</a>
         </div>
       </section>
   </body>
