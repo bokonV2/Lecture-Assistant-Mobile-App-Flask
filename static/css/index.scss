@@ -94,14 +94,25 @@ section.loginPage{
 }
 section.headInfo{
   display: flex;
-  flex-direction: column;
-  padding: 5px;
-  padding-left: 15px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 15px;
+
+  .inf{
+    display: flex;
+    flex-direction: column;
+  }
 
   .info{
     color: #ccc;
     font-size: 14px;
   }
+
+  a{
+    color: #ccc;
+    text-decoration: none;
+  }
+
 }
 section.addButton{
   position: fixed;

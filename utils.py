@@ -2,6 +2,27 @@ from object import *
 
 
 
+def checkLoginUser(email, password):
+    try:
+        user = User.select().where(User.email == email and User.password == password).get()
+    except:
+        user = False
+    if user:
+        print(user)
+        return user.id
+    return False
+
+def registerUser(fio, login, password, spec, group, is_teacher):
+    return User.create(
+        fio=fio, email=login, 
+        password=password, spec=spec, 
+        group=group, is_teacher=is_teacher
+    ).id
+
+def getUserInfoById(id):
+    user =  User.select().where(User.id == id).get()
+    return user
+
 def setUserInfo1(fio, password):
     user = User.select().where(User.id == 1).get()
     user.fio = fio
@@ -27,7 +48,7 @@ def addLecture(dis_id, name, content, file):
 def getDiscipline():
     return Disciplines.select()
 
-def getLectureById(id):
+def getLecturesByIdDiscipline(id):
     return Lectures.select().where(Lectures.dis_id == id)
 
 def getLecture(id):

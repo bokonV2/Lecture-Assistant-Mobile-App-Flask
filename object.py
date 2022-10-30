@@ -21,9 +21,11 @@ class Lectures(BaseModel):
 class User(BaseModel):
     id = PrimaryKeyField()
     fio = TextField()
+    email = TextField()
     group = TextField()
     spec = TextField()
     password = TextField()
+    is_teacher = BooleanField()
 
 if __name__ == '__main__':
     Disciplines.create_table()

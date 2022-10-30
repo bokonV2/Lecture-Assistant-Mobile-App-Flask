@@ -1,37 +1,28 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lecture Assistant</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
-</head>
-  <body>
-    <section class="back">
-      <div class="header">
-        <a href="/{{disId}}/lecture">
-          <svg width="24px" height="24px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
-          </svg>
-          <span>
-            Назад
-          </span>        
-        </a>
-      </div>
-    </section>
-    <section class="lectureInner">
-      <div class="title">{{lecture.name}}</div>
-      <div class="body">
-        <span>
-          {{lecture.content}}
-        </span>
-      </div>
-      <div class="file">
-        <div class="dwl btn">
-          <a href="/uploads/{{lecture.file}}">Скачать материал</a>
-        </div>
-      </div>
-    </section>
-  </body>
-</html>
+{% extends "_base.html" %}
+{% block content %}
+<section class="back">
+  <div class="header">
+    <a href="/{{disId}}/lecture">
+      <svg width="24px" height="24px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
+      </svg>
+      <span>
+        Назад
+      </span>        
+    </a>
+  </div>
+</section>
+<section class="lectureInner">
+  <div class="title">{{lecture.name}}</div>
+  <div class="body">
+    <span>
+      {{lecture.content}}
+    </span>
+  </div>
+  <div class="file">
+    <div class="dwl btn">
+      <a onclick="downloadFile('/uploads/{{lecture.file}}')">Скачать материал</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

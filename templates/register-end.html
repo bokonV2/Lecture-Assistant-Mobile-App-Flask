@@ -1,43 +1,51 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lecture Assistant</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
-</head>
-  <body>
-      <section class="loginPage">
-        <div class="top">
-          <div class="header">
-            <h1>Зарегистрировать учетную запись</h1>
-          </div>
-          <img src="/static/img/20944201.svg" alt="logo">
-          <form action="/register/1" method="post">
-            <select name="person">
-              <option value="0">Ученик</option>
-              <option value="1">Преподаватель</option>
-            </select>
-            <select name="spec">
-              <option value="Бух. учёт">Бух. учёт</option>
-              <option value="ПОИТ">ПОИТ</option>
-              <option value="ПГС">ПГС</option>
-            </select>
-            <select name="group">
-              <option value="188-б">188-б</option>
-              <option value="23-п">23-п</option>
-              <option value="120-с">120-с</option>
-            </select>
-            <input class="btn" type="submit" value="Зарегистрировать">
-          </form>
-          <div class="hint">
-            <span>Войти с помощью рабочей или учебной учётной записи для продолжения работы</span>
-          </div>
-        </div>
-        <div class="bottom">
-          <a href="/login">Войти в учетную запись</a>
-        </div>
-      </section>
-  </body>
-</html>
+{% extends "_base.html" %}
+{% block content %}
+<section class="loginPage">
+  <div class="top">
+    <div class="header">
+      <h1>Зарегистрировать учетную запись</h1>
+    </div>
+    <img src="/static/img/20944201.svg" alt="logo">
+    <form action="/register/1" method="post">
+      <select name="person" id="person" onchange="inputPerson()">
+        <option value="0">Ученик</option>
+        <option value="1">Преподаватель</option>
+      </select>
+      <input type="text" name="spec" id="spec" placeholder="Специальность">
+      <input type="text" name="group" id="group" placeholder="Группа">
+      <input class="btn" type="submit" value="Зарегистрировать">
+    </form>
+    <div class="hint">
+      <span>Войти с помощью рабочей или учебной учётной записи для продолжения работы</span>
+    </div>
+  </div>
+  <div class="bottom">
+    <a href="/login">Войти в учетную запись</a>
+  </div>
+</section>
+<script>
+  function clickStudent() {
+    console.log('asd')
+    $('#spec').fadeIn(200,null);
+    $('#group').fadeIn(200,null);
+    $('#spec').val(null);
+    $('#group').val(null);
+
+  }
+  function clickTeacher() {
+    console.log('123')
+    $('#spec').fadeOut(200,null);
+    $('#group').fadeOut(200,null);
+    $('#spec').val('Преподаватель');
+    $('#group').val(' ');
+
+  }
+  function inputPerson() {
+    if ($('#person').val() === '0'){
+      clickStudent();
+    } else {
+      clickTeacher();
+    }
+  }
+</script>
+{% endblock %}

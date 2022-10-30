@@ -1,23 +1,28 @@
-from flask import Flask, render_template, redirect,send_from_directory, request
+from flask import Flask, render_template, redirect, send_from_directory, request, session
 from utils import *
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/img/'
-app.secret_key = "as2t4y532uyd"
+app.secret_key = "sdfery54er4yehr5ye4gd4d"
 
 @app.route("/")
 def hello_world():
-    user = getUserInfo()
-    if user.fio == "1":
+    if not session.get('id'):
         return redirect('/login')
+    try:
+        user = getUserInfoById(session['id'])
+    except:
+        session['id'] = False
     return redirect('/disciplines')
 
 
 @app.route("/login", methods=["POST"])
 def postLogin():
-    user = getUserInfo()
-    if user.password == request.form.get('password'):
+    user = checkLoginUser(request.form.get('login'), request.form.get('password'))
+    print(type(user))
+    if user:
+        session['id'] = user
         return redirect('/disciplines')
     return redirect('/login')
 
@@ -29,16 +34,30 @@ def getLogin():
 @app.route("/register/<int:step>", methods=["POST"])
 def postRegister(step):
     if step == 0:
-        setUserInfo1(request.form.get('fio'),request.form.get('password'))
+        session['fio'] = request.form.get('fio')
+        session['login'] = request.form.get('login')
+        session['password'] = request.form.get('password')
+        # setUserInfo1(request.form.get('fio'),request.form.get('password'))
         return render_template('register-end.html')
     else:
-        setUserInfo2(request.form.get('spec'), request.form.get('group'))
+        print(session['fio'], session['login'], session['password'])
+        print(request.form.get('person') ,request.form.get('spec'), request.form.get('group'))
+        # setUserInfo2(request.form.get('spec'), request.form.get('group'))
+        session['id'] = registerUser(
+            session['fio'], session['login'], session['password'],
+            request.form.get('spec'), request.form.get('group'), 
+            int(request.form.get('person'))
+        )
         return redirect('/disciplines')
 
 @app.route("/register", methods=["GET"])
 def getRegister():
     return render_template('register-start.html')
 
+@app.route("/unLogin", methods=["GET"])
+def getUnLogin():
+    session['id'] = 0
+    return redirect('/login')
 
 @app.route("/disciplines", methods=["POST"])
 def postAddDisciplines():
@@ -47,9 +66,9 @@ def postAddDisciplines():
 
 @app.route("/disciplines", methods=["GET"])
 def getDisciplines():
-    user = getUserInfo()
-    if user.fio == "1":
+    if not session.get('id'):
         return redirect('/login')
+    user = getUserInfoById(session['id'])
     disciplines = getDiscipline()
     return render_template('disciplines.html', disciplines=disciplines, user=user)
 
@@ -69,10 +88,10 @@ def postLecture(id):
 
 @app.route("/<int:id>/lecture", methods=["GET"])
 def getlecture(id):
-    user = getUserInfo()
-    if user.fio == "1":
+    if not session.get('id'):
         return redirect('/login')
-    lectures = getLectureById(id)
+    user = getUserInfoById(session['id'])
+    lectures = getLecturesByIdDiscipline(id)
     return render_template('lecture.html', id=id, lectures=lectures, user=user)
 
 @app.route("/<int:disId>/lectureDel/<int:id>", methods=["GET"])
@@ -82,9 +101,9 @@ def deleteLecture(id, disId):
 
 @app.route("/<int:disId>/lectureInner/<int:id>", methods=['GET'])
 def getLectureInner(disId, id):
-    user = getUserInfo()
-    if user.fio == "1":
+    if not session.get('id'):
         return redirect('/login')
+    user = getUserInfoById(session['id'])
     lecture = getLecture(id)
     return render_template('lectureInner.html', disId=disId, id=id, lecture=lecture)
 

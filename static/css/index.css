@@ -96,13 +96,21 @@ section.loginPage .bottom a {
 
 section.headInfo {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 15px;
+}
+section.headInfo .inf {
+  display: flex;
   flex-direction: column;
-  padding: 5px;
-  padding-left: 15px;
 }
 section.headInfo .info {
   color: #ccc;
   font-size: 14px;
+}
+section.headInfo a {
+  color: #ccc;
+  text-decoration: none;
 }
 
 section.addButton {
